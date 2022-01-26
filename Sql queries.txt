@@ -1,0 +1,44 @@
+SELECT ar.ArtistId,ar.Name,count(*) as songs
+FROM Genre g
+join track t
+on g.GenreId=t.GenreId
+join Album a
+on a.AlbumId=t.AlbumId
+join artist ar
+on ar.ArtistId=a.ArtistId
+where g.name = "Jazz"
+group by 1,2 
+order by 3 desc
+limit 10;
+
+SELECT Ar.Name,sum(iv.UnitPrice)*iv.Quantity as amountspent
+FROM Invoice I
+JOIN InvoiceLine IV
+ON I.InvoiceId=IV.InvoiceId
+JOIN TRACK T
+ON T.TrackId=IV.TrackId
+JOIN ALBUM A
+ON A.AlbumId=T.AlbumId
+JOIN Artist AR
+ON AR.ArtistId=A.ArtistId
+group by 1
+order by 2 DESC
+limit 10;
+
+
+SELECT e.FirstName,e.Email,e.City,sum(i.total)as total
+FROM Employee e
+join Customer c
+on e.EmployeeId=c.SupportRepId
+join Invoice i 
+on c.CustomerId=i.CustomerId
+group by 1,2,3
+ORDER by 4 DESC; 
+
+select a.Name,count(*)as albums
+from artist a
+join Album al
+on a.ArtistId=al.ArtistId
+GROUP by 1
+ORDER by 2 desc
+limit 7;
